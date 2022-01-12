@@ -50,6 +50,12 @@ module.exports.getAccessToken = async (event) => {
 	return new Promise((resolve, reject) => {
 		oAuth2Client
 			.getToken(code, (err, token) => {
+				// var res = token.headers;
+
+				// if (!['access-control-allow-origin']) {
+				// 	res['access-control-allow-origin'] = { value: '*' };
+				// }
+
 				if (err) {
 					return reject(err);
 				}
