@@ -32,7 +32,7 @@ const getToken = async (code) => {
 		.then((res) => {
 			return res.json();
 		})
-		.catch((err) => err);
+		.catch((error) => error);
 
 	access_token && localStorage.setItem('access_token', access_token);
 
