@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
-	/* text-align: center; */
+	text-align: center;
 	padding: 2% 5%;
 }
 
@@ -19,12 +19,18 @@
 	justify-content: center;
 	flex-direction: row;
 	flex-wrap: wrap;
+	padding-left: 0;
 }
 
 .EventList > li {
 	padding: 1rem 2rem;
 	min-width: 400px;
 	max-width: 400px;
+	margin: 0rem 0.2rem;
+}
+
+ul {
+	padding-left: -40px;
 }
 
 li {

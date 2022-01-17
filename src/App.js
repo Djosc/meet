@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './nprogress.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
@@ -15,7 +16,9 @@ class App extends React.Component {
 	componentDidMount() {
 		this.mounted = true;
 		getEvents().then((events) => {
-			this.setState({ events, locations: extractLocations(events) });
+			if (this.mounted) {
+				this.setState({ events, locations: extractLocations(events) });
+			}
 		});
 	}
 
