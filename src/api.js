@@ -14,8 +14,8 @@ export const getAccessToken = async () => {
 			const results = await axios.get(
 				'https://wkaku1le39.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url'
 			);
-			const { authUrl } = results.data;
-			return (window.location.href = authUrl);
+			// const { authURL } = results.data.authURL;
+			return (window.location.href = results.data.authURL);
 		}
 		return code && getToken(code);
 	}
@@ -29,8 +29,8 @@ const getToken = async (code) => {
 			'/' +
 			encodeCode
 	)
-		.then((res) => {
-			return res.json();
+		.then((response) => {
+			return response.json();
 		})
 		.catch((error) => error);
 
@@ -56,7 +56,7 @@ const checkToken = async (accessToken) => {
 	const result = await fetch(
 		`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
 	)
-		.then((res) => res.json())
+		.then((response) => response.json())
 		.catch((error) => error.json());
 
 	return result;
