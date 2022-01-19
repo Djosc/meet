@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 import App from '../App';
 import EventList from '../EventList';
 import CitySearch from '../CitySearch';
+import NumberOfEvents from '../NumberOfEvents';
 
 import { mockData } from '../mock-data';
 import { extractLocations, getEvents } from '../api';
@@ -63,5 +64,25 @@ describe('<App /> integration', () => {
 		const allEvents = await getEvents();
 		expect(AppWrapper.state('events')).toEqual(allEvents);
 		AppWrapper.unmount();
+	});
+
+	test('initial NumberOfEvents state is 32', () => {
+		const AppWrapper = mount(<App />);
+		const NumberOfEventsState = AppWrapper.state('numberOfEvents');
+		expect(NumberOfEventsState).not.toEqual(undefined);
+		expect(NumberOfEventsState).toEqual(32);
+		AppWrapper.unmount();
+	});
+
+	test('change numberOfEvents state when input changes', () => {
+		const AppWrapper = mount(<App />);
+		AppWrapper.setState({
+			numberOfEvents: 32,
+		});
+		const numberOfEventsInput =
+			AppWrapper.find(NumberOfEvents).find('.NumberOfEventsInput');
+		const eventObject = { target: { value: 5 } };
+		numberOfEventsInput.simulate('change', eventObject);
+		expect(AppWrapper.state('numberOfEvents')).toBe(5);
 	});
 });

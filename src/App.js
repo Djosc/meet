@@ -11,13 +11,17 @@ class App extends React.Component {
 	state = {
 		events: [],
 		locations: [],
+		numberOfEvents: 32,
 	};
 
 	componentDidMount() {
 		this.mounted = true;
 		getEvents().then((events) => {
 			if (this.mounted) {
-				this.setState({ events, locations: extractLocations(events) });
+				this.setState({
+					events: events.slice(0, this.state.numberOfEvents),
+					locations: extractLocations(events),
+				});
 			}
 		});
 	}
@@ -32,9 +36,17 @@ class App extends React.Component {
 				location === 'all'
 					? events
 					: events.filter((event) => event.location === location);
-			this.setState({
-				events: locationEvents,
-			});
+			if (this.mounted) {
+				this.setState({
+					events: locationEvents.slice(0, this.state.numberOfEvents),
+				});
+			}
+		});
+	};
+
+	updateNumberOfEvents = (e) => {
+		this.setState({
+			numberOfEvents: e.target.value,
 		});
 	};
 
@@ -43,7 +55,10 @@ class App extends React.Component {
 			<div className="App">
 				<div className="top-bar-wrap">
 					<CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-					<NumberOfEvents />
+					<NumberOfEvents
+						numberOfEvents={this.state.numberOfEvents}
+						updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)}
+					/>
 				</div>
 				<EventList events={this.state.events} />
 			</div>
