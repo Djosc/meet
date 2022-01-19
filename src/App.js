@@ -11,6 +11,7 @@ class App extends React.Component {
 	state = {
 		events: [],
 		locations: [],
+		currentLocation: 'all',
 		numberOfEvents: 32,
 	};
 
@@ -39,6 +40,7 @@ class App extends React.Component {
 			if (this.mounted) {
 				this.setState({
 					events: locationEvents.slice(0, this.state.numberOfEvents),
+					currentLocation: location,
 				});
 			}
 		});
@@ -48,6 +50,7 @@ class App extends React.Component {
 		this.setState({
 			numberOfEvents: e.target.value,
 		});
+		this.updateEvents(this.state.currentLocation);
 	};
 
 	render() {
