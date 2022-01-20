@@ -31,15 +31,20 @@ class App extends React.Component {
 		this.mounted = false;
 	}
 
-	updateEvents = (location) => {
+	updateEvents = (location, eventCount) => {
 		getEvents().then((events) => {
 			const locationEvents =
 				location === 'all'
 					? events
 					: events.filter((event) => event.location === location);
-			if (this.mounted) {
+			if (eventCount !== this.state.numberOfEvents) {
 				this.setState({
 					events: locationEvents.slice(0, this.state.numberOfEvents),
+					currentLocation: location,
+				});
+			} else {
+				this.setState({
+					events: locationEvents,
 					currentLocation: location,
 				});
 			}
@@ -50,7 +55,7 @@ class App extends React.Component {
 		this.setState({
 			numberOfEvents: e.target.value,
 		});
-		this.updateEvents(this.state.currentLocation);
+		this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
 	};
 
 	render() {
