@@ -6,16 +6,14 @@ import * as atatus from 'atatus-spa';
 // import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 // import reportWebVitals from './reportWebVitals';
 
+atatus.config('21e712d11b7c4342bdf5c46d382b6304').install();
+
 ReactDOM.render(
 	<React.StrictMode>
 		<App />
 	</React.StrictMode>,
 	document.getElementById('root')
 );
-
-atatus.config('21e712d11b7c4342bdf5c46d382b6304').install();
-
-atatus.notify(new Error('Test Atatus Setup'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
