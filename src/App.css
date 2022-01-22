@@ -1,4 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
+* {
+	--bg-color-primary: #fff;
+	--bg-color-secondary: rgb(129, 126, 126);
+	--bg-color-suggestion: rgb(136, 136, 136);
+	--bg-color-hover: #fff;
+}
+
 .App {
 	text-align: center;
 	padding: 2% 5%;
@@ -12,14 +20,21 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
+	flex-direction: row;
 }
 
+@media screen and (max-width: 768px) {
+	.top-bar-wrap {
+		flex-direction: column;
+	}
+}
 .EventList {
 	display: flex;
 	justify-content: center;
 	flex-direction: row;
 	flex-wrap: wrap;
 	padding-left: 0;
+	margin-top: 4rem;
 }
 
 .EventList > li {
@@ -30,15 +45,36 @@
 }
 
 ul {
-	padding-left: -40px;
-}
-
-li {
+	padding-left: 0px;
 	list-style: none;
 }
 
-.NumberOfEvents {
-	margin-bottom: 3.3rem;
+li {
+	cursor: pointer;
+	padding: 0.2rem;
+}
+
+.suggestions {
+	background-color: var(--bg-color-suggestion);
+	z-index: 100;
+	position: absolute;
+	margin-top: 2px;
+	text-align: left;
+	min-width: 300px;
+	max-width: 500px;
+}
+
+.suggestions > li {
+	border: 1px solid rgb(0, 0, 0);
+}
+
+.suggestions > li:hover {
+	background-color: var(--bg-color-hover);
+}
+
+.NumberOfEventsInput {
+	min-width: 300px;
+	max-width: 500px;
 }
 
 .event {
@@ -48,4 +84,6 @@ li {
 }
 
 .city {
+	min-width: 300px;
+	max-width: 500px;
 }

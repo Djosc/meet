@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class CitySearch extends Component {
 	state = {
@@ -42,7 +43,11 @@ class CitySearch extends Component {
 					style={this.state.showSuggestions ? {} : { display: 'none' }}
 				>
 					{this.state.suggestions.map((suggestion) => (
-						<li key={suggestion} onClick={() => this.handleItemClicked(suggestion)}>
+						<li
+							value={suggestion}
+							key={suggestion}
+							onClick={() => this.handleItemClicked(suggestion)}
+						>
 							{suggestion}
 						</li>
 					))}
