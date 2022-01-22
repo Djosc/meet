@@ -28,8 +28,9 @@ class CitySearch extends Component {
 	render() {
 		return (
 			<div className="CitySearch">
-				<p>Search for a City...</p>
+				<p>Search for a city...</p>
 				<input
+					size="lg"
 					type="text"
 					className="city"
 					value={this.state.query}

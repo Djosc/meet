@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Card, Button } from 'react-bootstrap';
 
 class Event extends Component {
 	state = {
@@ -16,23 +17,28 @@ class Event extends Component {
 
 		return (
 			<div className="event">
-				<h1 className="summary">{event.summary}</h1>
-				<p className="start-date">
-					{event.start.dateTime} {event.start.timeZone}
-				</p>
+				<Card>
+					<Card.Body>
+						<Card.Title className="summary pb-3">{event.summary}</Card.Title>
+						<Card.Subtitle className="start-date">
+							{event.start.dateTime} {event.start.timeZone}
+						</Card.Subtitle>
 
-				<p className="location">{event.location}</p>
+						<Card.Text className="location">{event.location}</Card.Text>
 
-				{this.state.collapsed === false && (
-					<p className="description">{event.description}</p>
-				)}
+						{this.state.collapsed === false && (
+							<Card.Text className="description">{event.description}</Card.Text>
+						)}
 
-				<button
-					className={this.state.collapsed ? 'show-details-btn' : 'hide-details-btn'}
-					onClick={this.handleClick}
-				>
-					Show Details
-				</button>
+						<Button
+							variant="primary"
+							className={this.state.collapsed ? 'show-details-btn' : 'hide-details-btn'}
+							onClick={this.handleClick}
+						>
+							{this.state.collapsed ? 'Show Details' : 'Hide Details'}
+						</Button>
+					</Card.Body>
+				</Card>
 			</div>
 		);
 	}

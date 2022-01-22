@@ -5,6 +5,8 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 
+import { Container, Row } from 'react-bootstrap';
+
 import { extractLocations, getEvents } from './api';
 
 class App extends React.Component {
@@ -68,7 +70,11 @@ class App extends React.Component {
 						updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)}
 					/>
 				</div>
-				<EventList events={this.state.events} />
+				<Container fluid>
+					<Row className="justify-content-md-center">
+						<EventList events={this.state.events} />
+					</Row>
+				</Container>
 			</div>
 		);
 	}
