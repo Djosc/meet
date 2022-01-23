@@ -1,11 +1,39 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class CitySearch extends Component {
+	constructor(props) {
+		super(props);
+
+		// Setup ref to know when the user clicks outside of the city search bar
+		this.setWrapperRef = this.setWrapperRef.bind(this);
+		this.handleClickOutside = this.handleClickOutside.bind(this);
+	}
+
+	setWrapperRef(node) {
+		this.wrapperRef = node;
+	}
+
 	state = {
 		query: '',
 		suggestions: [],
 		showSuggestions: undefined,
+	};
+
+	componentDidMount() {
+		document.addEventListener('mousedown', this.handleClickOutside);
+	}
+
+	componentWillUnmount() {
+		document.removeEventListener('mousedown', this.handleClickOutside);
+	}
+
+	// Check if user clicks outside of the city search bar. If so, hide suggestions
+	handleClickOutside = (event) => {
+		if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+			this.setState({
+				showSuggestions: false,
+			});
+		}
 	};
 
 	handleInputChanged = (event) => {
@@ -29,33 +57,35 @@ class CitySearch extends Component {
 		return (
 			<div className="CitySearch">
 				<p>Search for a city...</p>
-				<input
-					size="lg"
-					type="text"
-					className="city"
-					value={this.state.query}
-					onChange={this.handleInputChanged}
-					onFocus={() => {
-						this.setState({ showSuggestions: true });
-					}}
-				/>
-				<ul
-					className="suggestions"
-					style={this.state.showSuggestions ? {} : { display: 'none' }}
-				>
-					{this.state.suggestions.map((suggestion) => (
-						<li
-							value={suggestion}
-							key={suggestion}
-							onClick={() => this.handleItemClicked(suggestion)}
-						>
-							{suggestion}
+				<div className="ref-wrapper" ref={this.setWrapperRef}>
+					<input
+						size="lg"
+						type="text"
+						className="city"
+						value={this.state.query}
+						onChange={this.handleInputChanged}
+						onFocus={() => {
+							this.setState({ showSuggestions: true });
+						}}
+					/>
+					<ul
+						className="suggestions"
+						style={this.state.showSuggestions ? {} : { display: 'none' }}
+					>
+						{this.state.suggestions.map((suggestion) => (
+							<li
+								value={suggestion}
+								key={suggestion}
+								onClick={() => this.handleItemClicked(suggestion)}
+							>
+								{suggestion}
+							</li>
+						))}
+						<li key="all" onClick={() => this.handleItemClicked('all')}>
+							<b>See all cities</b>
 						</li>
-					))}
-					<li key="all" onClick={() => this.handleItemClicked('all')}>
-						<b>See all cities</b>
-					</li>
-				</ul>
+					</ul>
+				</div>
 			</div>
 		);
 	}
