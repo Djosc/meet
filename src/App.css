@@ -45,6 +45,7 @@ li {
 input[type='text'] {
 	font-size: 16px;
 }
+
 .suggestions {
 	background-color: var(--bg-color-suggestion);
 	z-index: 100;
@@ -83,4 +84,12 @@ input[type='text'] {
 
 .summary {
 	font-size: 34px;
+}
+
+.event-card {
+	min-height: 200px;
+}
+
+.event-card__body {
+	min-height: 200px;
 }

@@ -16,9 +16,9 @@ class Event extends Component {
 		const { event } = this.props;
 
 		return (
-			<div className="event">
-				<Card>
-					<Card.Body>
+			<div className="event align-items-center">
+				<Card className="event-card">
+					<Card.Body className="event-card__body">
 						<Card.Title className="summary pb-3">{event.summary}</Card.Title>
 						<Card.Subtitle className="start-date">
 							{event.start.dateTime} {event.start.timeZone}

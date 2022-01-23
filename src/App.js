@@ -70,11 +70,7 @@ class App extends React.Component {
 						updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)}
 					/>
 				</div>
-				<Container fluid>
-					<Row className="justify-content-md-center">
-						<EventList events={this.state.events} />
-					</Row>
-				</Container>
+				<EventList events={this.state.events} />
 			</div>
 		);
 	}

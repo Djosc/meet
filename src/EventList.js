@@ -10,10 +10,10 @@ class EventList extends Component {
 			<>
 				{/* <Row className="justify-content-md-center"> */}
 				<ul className="EventList py-4">
-					<Container fluid>
-						<Row className="justify-content-md-center">
-							{events.map((event) => (
-								<Col lg={5} md={4} sm={10}>
+					<Container>
+						<Row className="justify-content-center align-items-md-center">
+							{events.map((event, id) => (
+								<Col lg={4} md={6} sm={10} key={id}>
 									<li key={event.id}>
 										<Event event={event} />
 									</li>
