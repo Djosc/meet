@@ -16,7 +16,7 @@ class Event extends Component {
 		const { event } = this.props;
 
 		return (
-			<div className="event align-items-center">
+			<div className="event">
 				<Card className="event-card">
 					<Card.Body className="event-card__body">
 						<Card.Title className="summary pb-3">{event.summary}</Card.Title>
@@ -31,7 +31,7 @@ class Event extends Component {
 						)}
 
 						<Button
-							variant="primary"
+							variant="outline-dark"
 							className={this.state.collapsed ? 'show-details-btn' : 'hide-details-btn'}
 							onClick={this.handleClick}
 						>

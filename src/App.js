@@ -9,6 +9,8 @@ import { Container, Row } from 'react-bootstrap';
 
 import { extractLocations, getEvents } from './api';
 
+import logo from './images/meet-logo.png';
+
 class App extends React.Component {
 	state = {
 		events: [],
@@ -63,6 +65,9 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className="App">
+				<div className="meet-logo-div">
+					<img src={logo} alt="meet logo" />
+				</div>
 				<div className="top-bar-wrap">
 					<CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
 					<NumberOfEvents
