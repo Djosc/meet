@@ -5,8 +5,6 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 
-import { Container, Row } from 'react-bootstrap';
-
 import { extractLocations, getEvents } from './api';
 
 import logo from './images/meet-logo.png';
@@ -17,6 +15,7 @@ class App extends React.Component {
 		locations: [],
 		currentLocation: 'all',
 		numberOfEvents: 32,
+		errorText: '',
 	};
 
 	componentDidMount() {
@@ -55,10 +54,21 @@ class App extends React.Component {
 		});
 	};
 
+	// This, along with numberOfEvents and errorText is passed down to the
+	// NumberOfEvents components.
 	updateNumberOfEvents = (e) => {
-		this.setState({
-			numberOfEvents: e.target.value,
-		});
+		const value = e.target.value;
+		if (value < 1 || value > 32 || /^-?\d+$/.test(value) !== true) {
+			return this.setState({
+				numberOfEvents: '',
+				errorText: 'Please enter a number between 1 and 32.',
+			});
+		} else {
+			this.setState({
+				numberOfEvents: value,
+				errorText: '',
+			});
+		}
 		this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
 	};
 
@@ -73,6 +83,7 @@ class App extends React.Component {
 					<NumberOfEvents
 						numberOfEvents={this.state.numberOfEvents}
 						updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)}
+						errorText={this.state.errorText}
 					/>
 				</div>
 				<EventList events={this.state.events} />
