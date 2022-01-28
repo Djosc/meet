@@ -132,7 +132,7 @@ input[type='text'] {
 }
 
 .event-card__body {
-	min-height: 250px;
+	min-height: 285px;
 	/* max-height: 250px; */
 }
 
@@ -140,4 +140,13 @@ input[type='text'] {
 	position: relative;
 	bottom: 50px;
 	text-align: center;
+}
+
+.show-details-btn {
+	position: absolute;
+	bottom: 15px;
+	left: 35%;
+}
+
+.hide-details-btn {
 }

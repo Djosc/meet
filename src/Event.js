@@ -17,7 +17,7 @@ class Event extends Component {
 
 		return (
 			<div className="event">
-				<Card className="event-card">
+				<Card className="event-card align-items-center">
 					<Card.Body className="event-card__body">
 						<Card.Title className="summary pb-3">{event.summary}</Card.Title>
 						<Card.Subtitle className="start-date">
@@ -27,12 +27,13 @@ class Event extends Component {
 						<Card.Text className="location">{event.location}</Card.Text>
 
 						{this.state.collapsed === false && (
-							<Card.Text className="description">{event.description}</Card.Text>
+							<Card.Text className="description mb-2">{event.description}</Card.Text>
 						)}
-
 						<Button
 							variant="outline-dark"
-							className={this.state.collapsed ? 'show-details-btn' : 'hide-details-btn'}
+							className={
+								this.state.collapsed ? 'show-details-btn' : 'hide-details-btn mt-2'
+							}
 							onClick={this.handleClick}
 						>
 							{this.state.collapsed ? 'Show Details' : 'Hide Details'}
