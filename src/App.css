@@ -133,7 +133,7 @@ input[type='text'] {
 
 .event-card__body {
 	min-height: 250px;
-	max-height: 250px;
+	/* max-height: 250px; */
 }
 
 .error-wrapper {
