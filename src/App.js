@@ -18,15 +18,14 @@ class App extends React.Component {
 		currentLocation: 'all',
 		numberOfEvents: 32,
 		errorText: '',
-		offlineText:
-			'testttttttttttttttttttttttttttttttttttttttttt ttttestttttttttttttttttttttttttttttt',
+		offlineText: '',
 	};
 
 	componentDidMount() {
 		if (!navigator.onLine) {
 			this.setState({
 				offlineText:
-					'You are offline. Event list is being displayed from the cache. You will not be able to load new events while offline',
+					'You are offline. Event list is being displayed from the cache. You will not be able to load new events while offline.',
 			});
 		}
 		this.mounted = true;
