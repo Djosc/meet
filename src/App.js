@@ -5,6 +5,8 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 
+import { OfflineAlert } from './Alert';
+
 import { extractLocations, getEvents } from './api';
 
 import logo from './images/meet-logo.png';
@@ -16,9 +18,17 @@ class App extends React.Component {
 		currentLocation: 'all',
 		numberOfEvents: 32,
 		errorText: '',
+		offlineText:
+			'testttttttttttttttttttttttttttttttttttttttttt ttttestttttttttttttttttttttttttttttt',
 	};
 
 	componentDidMount() {
+		if (!navigator.onLine) {
+			this.setState({
+				offlineText:
+					'You are offline. Event list is being displayed from the cache. You will not be able to load new events while offline',
+			});
+		}
 		this.mounted = true;
 		getEvents().then((events) => {
 			if (this.mounted) {
@@ -85,6 +95,9 @@ class App extends React.Component {
 						updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)}
 						errorText={this.state.errorText}
 					/>
+				</div>
+				<div className="offline-alert-wrap">
+					<OfflineAlert text={this.state.offlineText} />
 				</div>
 				<EventList events={this.state.events} />
 			</div>

@@ -152,3 +152,11 @@ input[type='text'] {
 
 .hide-details-btn {
 }
+
+.offline-alert-wrap {
+	background: var(--bg-color-primary);
+}
+
+.offline-alert-wrap > p {
+	margin: 0px;
+}

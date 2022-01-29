@@ -14,6 +14,8 @@ class Alert extends Component {
 			fontSize: this.fontSize,
 			position: this.position,
 			marginLeft: this.marginLeft,
+			marginBottom: this.marginBottom,
+			paddingTop: this.paddingTop,
 		};
 	};
 
@@ -45,6 +47,16 @@ class ErrorAlert extends Alert {
 	}
 }
 
-export { InfoAlert, ErrorAlert };
+class OfflineAlert extends Alert {
+	constructor(props) {
+		super(props);
+		this.color = 'red';
+		this.fontSize = '16px';
+		this.marginBottom = '0';
+		this.paddingTop = '1rem';
+	}
+}
+
+export { InfoAlert, ErrorAlert, OfflineAlert };
 
 export default Alert;
