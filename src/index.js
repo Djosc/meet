@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import * as atatus from 'atatus-spa';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './service-worker';
 // import reportWebVitals from './reportWebVitals';
 
 atatus.config('21e712d11b7c4342bdf5c46d382b6304').install();
