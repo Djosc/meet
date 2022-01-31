@@ -32,7 +32,7 @@ class App extends React.Component {
 		}
 
 		this.mounted = true;
-		const accessToken = localStorage.getItem('accessToken');
+		const accessToken = localStorage.getItem('access_Token');
 		const isTokenValid = (await checkToken(accessToken)).error ? false : true;
 		const searchParams = new URLSearchParams(window.location.search);
 		const code = searchParams.get('code');
