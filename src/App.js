@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import './App.css';
 import './nprogress.css';
 import EventList from './EventList';
@@ -8,9 +8,20 @@ import WelcomeScreen from './components/WelcomeScreen';
 
 import { OfflineAlert } from './Alert';
 
+import {
+	ScatterChart,
+	Scatter,
+	XAxis,
+	YAxis,
+	CartesianGrid,
+	Tooltip,
+	ResponsiveContainer,
+} from 'recharts';
+
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 
 import logo from './images/meet-logo.png';
+import { mockData } from './mock-data';
 
 class App extends React.Component {
 	state = {
@@ -93,7 +104,33 @@ class App extends React.Component {
 		this.updateEvents(this.state.currentLocation, this.state.numberOfEvents);
 	};
 
+	getData = () => {
+		const { locations, events } = this.state;
+		const data = locations.map((location) => {
+			const number = events.filter((event) => event.location === location).length;
+			const city = location.split(', ').shift();
+			return { city, number };
+		});
+		return data;
+	};
+
+	// This is so i can test locally without constantly deploying. When I
+	// authenticate locally with Oauth2, i get redirected to the deployed site.
+	// This is just a bad fix for that
+	getMockData = () => {
+		const locations = mockData.map((locale) => locale.location);
+		const events = mockData.map((eve) => eve);
+		const data = locations.map((location) => {
+			const number = events.filter((event) => event.location === location).length;
+			const city = location.split(', ').shift();
+			return { city, number };
+		});
+		return data;
+	};
+
 	render() {
+		// const { locations, numberOfEvents } = this.state;
+
 		if (this.state.showWelcomeScreen === undefined) return <div className="App" />;
 
 		return (
@@ -112,6 +149,29 @@ class App extends React.Component {
 				<div className="offline-alert-wrap">
 					<OfflineAlert text={this.state.offlineText} />
 				</div>
+				<ResponsiveContainer height={400}>
+					<ScatterChart
+						margin={{
+							top: 20,
+							right: 20,
+							bottom: 20,
+							left: 20,
+						}}
+					>
+						<CartesianGrid />
+						{/* data key should be city? city in the object? */}
+						<XAxis type="category" dataKey="city" name="city" />
+						<YAxis
+							type="number"
+							dataKey="number"
+							name="number of events"
+							allowDecimals={false}
+						/>
+						<Tooltip cursor={{ strokeDasharray: '3 3' }} itemStyle={{ color: '#fff' }} />
+						<Scatter name="" data={this.getData()} fill="#fca311" />
+						{/* <Scatter name="" data={this.getMockData()} fill="#fca311" /> */}
+					</ScatterChart>
+				</ResponsiveContainer>
 				<EventList events={this.state.events} />
 				<WelcomeScreen
 					showWelcomeScreen={this.state.showWelcomeScreen}
