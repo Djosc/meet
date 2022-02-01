@@ -1,4 +1,5 @@
 # Meet
+![meet-main-scrnshot](https://user-images.githubusercontent.com/89062671/152058934-4b644dad-e56f-4e42-9b61-7fc0bc62450f.png)
 
 Link to the live version: [Meet](https://djosc.github.io/meet/)
 
