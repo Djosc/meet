@@ -150,9 +150,9 @@ class App extends React.PureComponent {
 				<div className="offline-alert-wrap">
 					<OfflineAlert text={this.state.offlineText} />
 				</div>
-				<div className="data-vis-wrapper" style={{ maxHeight: '500px' }}>
+				<div className="data-vis-wrapper">
 					<EventGenre events={events} />
-					<ResponsiveContainer height={400}>
+					<ResponsiveContainer height={400} width={400}>
 						<ScatterChart
 							margin={{
 								top: 20,
