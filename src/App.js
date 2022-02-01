@@ -5,6 +5,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import WelcomeScreen from './components/WelcomeScreen';
+import EventGenre from './EventGenre';
 
 import { OfflineAlert } from './Alert';
 
@@ -129,7 +130,7 @@ class App extends React.Component {
 	};
 
 	render() {
-		// const { locations, numberOfEvents } = this.state;
+		const { locations, numberOfEvents, events } = this.state;
 
 		if (this.state.showWelcomeScreen === undefined) return <div className="App" />;
 
@@ -149,33 +150,36 @@ class App extends React.Component {
 				<div className="offline-alert-wrap">
 					<OfflineAlert text={this.state.offlineText} />
 				</div>
-				<ResponsiveContainer height={400}>
-					<ScatterChart
-						margin={{
-							top: 20,
-							right: 20,
-							bottom: 20,
-							left: 20,
-						}}
-					>
-						<CartesianGrid />
-						{/* data key should be city? city in the object? */}
-						<XAxis type="category" dataKey="city" name="city" />
-						<YAxis
-							type="number"
-							dataKey="number"
-							name="number of events"
-							allowDecimals={false}
-						/>
-						<Tooltip
-							label=""
-							cursor={{ strokeDasharray: '3 3' }}
-							itemStyle={{ color: '#fff' }}
-						/>
-						<Scatter name="" data={this.getData()} fill="#fca311" />
-						{/* <Scatter name="" data={this.getMockData()} fill="#fca311" /> */}
-					</ScatterChart>
-				</ResponsiveContainer>
+				<div className="data-vis-wrapper">
+					<EventGenre events={events} />
+					<ResponsiveContainer height={400}>
+						<ScatterChart
+							margin={{
+								top: 20,
+								right: 20,
+								bottom: 20,
+								left: 20,
+							}}
+						>
+							<CartesianGrid />
+							{/* data key should be city? city in the object? */}
+							<XAxis type="category" dataKey="city" name="city" />
+							<YAxis
+								type="number"
+								dataKey="number"
+								name="number of events"
+								allowDecimals={false}
+							/>
+							<Tooltip
+								label=""
+								cursor={{ strokeDasharray: '3 3' }}
+								itemStyle={{ color: '#fff' }}
+							/>
+							<Scatter name="" data={this.getData()} fill="#fca311" />
+							{/* <Scatter name="" data={this.getMockData()} fill="#fca311" /> */}
+						</ScatterChart>
+					</ResponsiveContainer>
+				</div>
 				<EventList events={this.state.events} />
 				<WelcomeScreen
 					showWelcomeScreen={this.state.showWelcomeScreen}
