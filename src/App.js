@@ -167,7 +167,11 @@ class App extends React.Component {
 							name="number of events"
 							allowDecimals={false}
 						/>
-						<Tooltip cursor={{ strokeDasharray: '3 3' }} itemStyle={{ color: '#fff' }} />
+						<Tooltip
+							label=""
+							cursor={{ strokeDasharray: '3 3' }}
+							itemStyle={{ color: '#fff' }}
+						/>
 						<Scatter name="" data={this.getData()} fill="#fca311" />
 						{/* <Scatter name="" data={this.getMockData()} fill="#fca311" /> */}
 					</ScatterChart>
