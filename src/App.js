@@ -150,9 +150,9 @@ class App extends React.PureComponent {
 				<div className="offline-alert-wrap">
 					<OfflineAlert text={this.state.offlineText} />
 				</div>
-				<div className="data-vis-wrapper">
+				<div className="data-vis-wrapper ">
 					<EventGenre events={events} />
-					<ResponsiveContainer height={400} width={400}>
+					<ResponsiveContainer height={400} width={500}>
 						<ScatterChart
 							margin={{
 								top: 20,
@@ -162,7 +162,6 @@ class App extends React.PureComponent {
 							}}
 						>
 							<CartesianGrid />
-							{/* data key should be city? city in the object? */}
 							<XAxis type="category" dataKey="city" name="city" />
 							<YAxis
 								type="number"
