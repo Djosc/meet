@@ -24,7 +24,7 @@ import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import logo from './images/meet-logo.png';
 import { mockData } from './mock-data';
 
-class App extends React.Component {
+class App extends React.PureComponent {
 	state = {
 		events: [],
 		locations: [],
@@ -150,7 +150,7 @@ class App extends React.Component {
 				<div className="offline-alert-wrap">
 					<OfflineAlert text={this.state.offlineText} />
 				</div>
-				<div className="data-vis-wrapper">
+				<div className="data-vis-wrapper" style={{ maxHeight: '500px' }}>
 					<EventGenre events={events} />
 					<ResponsiveContainer height={400}>
 						<ScatterChart
